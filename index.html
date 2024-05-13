@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontisto/3.0.4/css/fontisto/fontisto.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  
+    <meta name="theme-color" content="#ff0000"/>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        //if browser support service worker
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('sw.js');
+        };
+      </script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
@@ -362,7 +369,7 @@
 <!-- doros 1  -->
 <!-- container dyal wataniyat hna w ta7t  -->
 
-<div class="container d-lg-flex d-md-flex"  >
+<div class="container d-lg-flex d-md-flex "  >
 
 
   <div class="card card-2" style="margin-bottom: 20px;margin-bottom: 120px;margin-right: 30px;border-radius: 50px;margin-left: 30px;color: whitesmoke;" >
@@ -748,4 +755,9 @@
 <script>import { Input, initMDB } from "mdb-ui-kit";
 
   initMDB({ Input })</script>
+  <script>
+    if ('serviceworker' in navigator ){
+      navigator.serviceWorker.register('/service-worker.js')
+    }
+  </script>
 </html>
