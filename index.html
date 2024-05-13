@@ -464,6 +464,10 @@
               <button class="btn cus-bg-1 m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsehelp" aria-expanded="false" aria-controls="collapseContact"style="border-radius: 20px;">
                 للدعم الحضوري
             </button>
+     
+
+            <button class="btn cus-bg-1 m-2" type="button" id="installButton" style="display: none;">Install App</button>
+
             </p>
         </div>
 
@@ -500,6 +504,7 @@
               <div class="collapse text-end" id="collapsehelp">
                 <!-- Content for contact -->               : للدعم
             </div>
+            
 </div>
 <nav aria-label="Page navigation example  " style="margin-bottom: 0%;" >
   <ul class="pagination">
@@ -760,4 +765,28 @@
       navigator.serviceWorker.register('/service-worker.js')
     }
   </script>
+  <script>
+    let deferredPrompt;
+  
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installButton').style.display = 'block';
+    });
+  
+    document.getElementById('installButton').addEventListener('click', () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice
+        .then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+            document.getElementById('installButton').style.display = 'none';
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+    });
+  </script>
+  
 </html>
